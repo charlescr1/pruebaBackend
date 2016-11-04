@@ -20,9 +20,11 @@ ESTRUCTURA DE CARPETAS
 REQUERIMIENTOS
 --------------
 
-La aplicación debe estar contenida en el directorio especifico pruebaBackend/admin/ en la raíz del servidor Web
-Servidor Web que soporte PHP 5.4.0 o superior
-Servidor de base de datos MySql
+La aplicación debe estar contenida en el directorio especifico pruebaBackend/admin/ en la raíz del servidor Web.
+
+Servidor Web que soporte PHP 5.4.0 o superior.
+
+Servidor de base de datos MySql.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [![Desarrollado por @charlescr1)]
