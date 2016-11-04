@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<title>Módulo de Citas - COVINOC</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="../../css/custom.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="../../dist/css/sb-admin-2.css" rel="stylesheet">
+
+	<!-- Custom Fonts -->
+	<link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body onLoad="cargarData()">
+
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" style="font-size:24px;" href="../../index.html">COVINOC</a>
+			</div>
+			<!-- /.navbar-header -->
+
+			<ul class="nav navbar-top-links navbar-right">
+				 <li class="dropdown">
+					<a class="dropdown-toggle"  href="#">
+						<i class="fa fa-user fa-fw"></i>
+					</a>
+				</li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
+
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li class="sidebar-search">
+							<div class="input-group custom-search-form">
+								&nbsp;
+							</div>
+							<!-- /input-group -->
+						</li>
+					</ul>
+					<ul class="nav" id="side-file">
+						<li>
+							<a href="./../sucursal/mostrar.html" onclick=""><i class="fa fa-edit fa-fw"></i>Sucursal</a>
+						</li>
+						<li>
+							<a href="./../sericio/mostrar.html" onclick=""><i class="fa fa-edit fa-fw"></i>Servicio</a>
+						</li>
+						<li>
+							<a href="./../empleado/mostrar.html" onclick=""><i class="fa fa-edit fa-fw"></i>Empleado</a>
+						</li>
+						<li>
+							<a href="mostrar.html" onclick=""><i class="fa fa-edit fa-fw"></i>Cita</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header">Modificar Cita</h3>
+					<button class='btn btn-default' type='button' id='enviarForm' onclick="javascript:location.href = 'mostrar.html';"><i class="fa fa-angle-double-left fa-fw"></i>Regresar</button>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+
+			<div class="row">
+				<div class="col-md-8 col-lg-8">
+					<h4 class="page-header">Plantilla</h4>
+					<div id='forms'>
+						<form id='form'>
+							<div class="form-group">
+								<label>Empleado</label>
+								<select class="form-control" name="empleado" id="empleado">
+									<option value=''>Favor seleccionar</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Servicio</label>
+								<select class="form-control" name="servicio" id="servicio">
+									<option value=''>Favor seleccionar</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Sucursal</label>
+								<select class="form-control" name="sucursal" id="sucursal">
+									<option value=''>Favor seleccionar</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Hora</label>
+								<input class="form-control" name="hora" id="hora" onKeyPress="return only_numbers(event)">
+							</div>
+							<div class="form-group">
+								<div class="radio">
+									<label>
+										<input name="optionsHora" id="optionsHora1" value="0" checked="" type="radio">
+										am
+									</label>
+									<label>
+										<input name="optionsHora" id="optionsHora2" value="1" type="radio">
+										pm
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Duración</label>
+								<input class="form-control" name="duracion" onKeyPress="return only_numbers(event)">
+							</div>
+							<div class="form-group">
+								<label>Fecha</label>
+								<input class="form-control" name="fecha" >
+							</div>
+							<div class="form-group">
+								<label>Observación</label>
+								<textarea class="form-control" rows="3" maxlength="255" name="observacion"></textarea>
+							</div>
+						</form>
+						<button class='btn btn-primary' type='button' id='enviarForm' onclick='enviar()'>Enviar</button>
+					</div>
+				</div>
+				<!-- /.col-lg-12 -->
+				<div class="col-md-4 col-lg-4">
+					<h4 class="page-header">Mensaje</h4>
+					<div id='mensaje' style="font-family: 'Lato', sans-serif;">
+
+					</div>
+				</div>
+			</div>
+			<!-- /.row -->
+
+		</div>
+		<!-- /#page-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- jQuery -->
+	<script src="../../vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="https://www.fuelcdn.com/fuelux/3.11.4/js/fuelux.min.js"></script>
+
+	<script>
+
+		function only_numbers(evento){
+
+			var iKeyCode;
+			iKeyCode = (evento.which) ? evento.which : evento.keyCode
+
+			if (iKeyCode > 31 && (iKeyCode < 46 || iKeyCode > 57 ) && iKeyCode != 44)
+			{
+				return false;
+			}
+			return true;
+		}
+
+		// Leemos la URL para obtener id
+		$.urlParam = function(name){
+			var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+			if(results)
+				return results[1] || 0;
+			else
+				return 0;
+		}
+
+		function cargarData(){
+
+			//Buscamos los empleados
+			// Realizamos la petición al servidor
+			var url = "http://127.0.0.1/pruebaBackend/admin/negocio/empleado";
+
+			$.ajax({
+				type: "GET",
+				url: url,
+				success: function(data)
+				{
+					var msg = eval("(" + data + ")");
+
+					$.each(msg, function(key, val) {
+						$("#empleado").append("<option value="+val['idempleado']+">"+val['nombre']+" "+val['apellido']+"</option>");
+					});
+				},
+				error: function(jqXHR, textStatus, error) {
+					var err = eval("(" + jqXHR.responseText + ")");
+					$("#mensaje").html(err.status+": "+err.message);
+				}
+			});
+
+			//Buscamos los servicios
+			// Realizamos la petición al servidor
+			var url = "http://127.0.0.1/pruebaBackend/admin/negocio/servicio/+$.urlParam('id')";
+
+			$.ajax({
+				type: "GET",
+				url: url,
+				success: function(data)
+				{
+					var msg = eval("(" + data + ")");
+
+					$.each(msg, function(key, val) {
+						$("#servicio").append("<option value="+val['idservicio']+">"+val['nombre']+"</option>");
+					});
+				},
+				error: function(jqXHR, textStatus, error) {
+					var err = eval("(" + jqXHR.responseText + ")");
+					$("#mensaje").html(err.status+": "+err.message);
+				}
+			});
+
+			//Buscamos las sucursales
+			// Realizamos la petición al servidor
+			var url = "http://127.0.0.1/pruebaBackend/admin/negocio/sucursal";
+
+			$.ajax({
+				type: "GET",
+				url: url,
+				success: function(data)
+				{
+					var msg = eval("(" + data + ")");
+
+					$.each(msg, function(key, val) {
+						$("#sucursal").append("<option value="+val['idsucursal']+">"+val['nombre']+" ("+val['disponibilidad']+")</option>");
+					});
+				},
+				error: function(jqXHR, textStatus, error) {
+					var err = eval("(" + jqXHR.responseText + ")");
+					$("#mensaje").html(err.status+": "+err.message);
+				}
+			});
+		}
+
+		function comparar_fecha(fechaInicial,fechaFinal)
+		{
+			valuesStart = fechaInicial.split("/");
+			valuesEnd = fechaFinal.split("/");
+
+			// Verificamos que la fecha no sea posterior a la actual
+			var dateStart = new Date(valuesStart[2],(valuesStart[1]-1),valuesStart[0]);
+			var dateEnd = new Date(valuesEnd[2],(valuesEnd[1]-1),valuesEnd[0]);
+			if(dateStart >= dateEnd)
+			{
+				return 0;
+			}
+			return 1;
+		}
+
+		// Estructura del objeto
+		function jsObj(idempleado,idservicio,idsucursal,hora,duracion,fecha,observacion)
+		{
+			this.idempleado = idempleado;
+			this.idservicio = idservicio;
+			this.idsucursal = idsucursal;
+			this.hora = hora;
+			this.duracion = duracion;
+			this.fecha = fecha;
+			this.observacion = observacion;
+		}
+
+		function enviar(){
+
+			var arrParam = new Array();
+			var i = 0;
+			var valFlag = 1;
+			$("#form").find(':input').each(function() {
+				var elemento = this;
+
+				//Validamos los input del form
+				if(elemento.value == ''){
+					if(elemento.name != "observacion"){
+						alert("El campo "+ elemento.name.toUpperCase() + " debe contener valor");
+						elemento.focus();
+						valFlag = 0;
+						return false;
+					}
+				}
+
+				if(elemento.name == 'fecha'){
+					var RegExPattern = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/;
+					if(!elemento.value.match(RegExPattern)){
+						alert("La fecha debe tener el formato dd/mm/yyyy");
+						valFlag = 0;
+						elemento.focus();
+						return false;
+					}
+
+					// Comprobamos que la fecha es válida
+					var d = new Date()
+
+					d.setFullYear(elemento.value.substring(6,10),
+									elemento.value.substring(3,5)-1,
+									elemento.value.substring(0,2)
+					)
+
+					if(d.getMonth() != elemento.value.substring(3,5)-1 || d.getDate() != elemento.value.substring(0,2)){
+						alert("Fecha no válida.")
+						valFlag = 0;
+						elemento.focus();
+						return false;
+					}
+
+					var f = new Date();
+					var hoy = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+
+					//Comprobamos que la fecha sea mayor que hoy
+					var fechaInicial = hoy;
+					var fechaFinal = elemento.value;
+					if(!comparar_fecha(fechaInicial,fechaFinal))
+					{
+						alert("La fecha de la cita debe ser mayor a la de hoy.");
+						valFlag = 0;
+						elemento.focus();
+						return false;
+					}
+				}
+
+				if(elemento.name == "duracion"){
+					if(elemento.value > 2){
+						alert("La duración de la cita no puede ser myor a 2 horas.");
+						valFlag = 0;
+						elemento.focus();
+						return false;
+					}
+				}
+
+				if(elemento.name != "optionsHora"){
+					arrParam[i] = elemento.value;
+					i++;
+				}
+			});
+
+			//Validamos el horario permitido para agendar citas
+			if(valFlag){
+				$("input[name=optionsHora]:radio").each(function(){
+					if($(this).is(":checked")){
+						//Validamos horario mañana
+						if($(this).attr("id") == "optionsHora1"){
+							if(document.getElementById("hora").value < 8 || document.getElementById("hora").value > 11){
+								alert("El horario de la mañana permitido es de 8 a 11");
+								valFlag = 0;
+								return false;
+							}
+						}else{//Validamos horario tarde
+							if(document.getElementById("hora").value < 1 || document.getElementById("hora").value > 6){
+								alert("El horario de la tarde permitido es de 1 a 6");
+								valFlag = 0;
+								return false;
+							}
+						}
+					}
+				});
+			}
+
+			if(valFlag == 0)
+				return false;
+
+			$('body,html').animate({scrollTop : 0}, 500);
+
+			//Instanciamos al objeto
+			var obj = new jsObj(arrParam[0],arrParam[1],arrParam[2],arrParam[3],arrParam[4],arrParam[5],arrParam[6]);
+
+			// Convertimos la lista de objetos en una cadena con el formato JSON
+			var objJSON = JSON.stringify(obj);
+
+			// Realizamos la petición al servidor
+			var url = "http://127.0.0.1/pruebaBackend/admin/negocio/cita";
+			$.ajax({
+				type: "POST",
+				url: url,
+				data: objJSON,
+				success: function(data)
+				{
+					var msg = eval("(" + data + ")");
+					$("#mensaje").html(msg.message);
+				},
+				error: function(jqXHR, textStatus, error) {
+					var err = eval("(" + jqXHR.responseText + ")");
+					$("#mensaje").html(err.status+": "+err.message);
+				},
+				beforeSend:jsBeforeSend
+			});
+		}
+
+		function jsBeforeSend(){
+			var htmlAdd = "<img src='../../img/loading.gif' alt=''>";
+			document.getElementById("mensaje").innerHTML = htmlAdd;
+		}
+
+	</script>
+</body>
+
+</html>
