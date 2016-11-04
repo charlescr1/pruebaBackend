@@ -1,8 +1,8 @@
 Modulo de Citas - COVINOC
 ============================
 
-DIRECTORY STRUCTURE
--------------------
+ESTRUCTURA DE CARPETAS
+---------------------
 
 		pruebaBackend/admin/					contiene toda la aplicación
 			bdschema/							contiene el esquema de base de datos de la aplicación
@@ -17,10 +17,10 @@ DIRECTORY STRUCTURE
 				negocio/lib						contiene la librerias de funciones de la aplicación
 				negocio/models					contiene las clases del modelo de la aplicación
 
-REQUIREMENTS
-------------
+REQUERIMIENTOS
+--------------
 
-La aplicación debe estar contenida en el directorio especifico pruebaBackend/admin/ en la raiz del servidor Web
+La aplicación debe estar contenida en el directorio especifico pruebaBackend/admin/ en la raíz del servidor Web
 Servidor Web que soporte PHP 5.4.0 o superior
 Servidor de base de datos MySql
 
